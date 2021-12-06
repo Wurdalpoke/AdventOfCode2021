@@ -608,26 +608,33 @@ function linePlotDiagonal() {
     for (i in diagonalPoints) {
         x1 = diagonalPoints[i][0]; x2 = diagonalPoints[i][2]; y1 = diagonalPoints[i][1]; y2 = diagonalPoints[i][3];
         
-        while (x1 !== x2 && y1 !== y2) {
-            if (x1 < x2 && y1 < y2) {
+        
+        if (x1 <= x2 && y1 <= y2) {
+            while (x1 !== x2+1 && y1 !== y2+1) {
                 plot[`line${y1}`][x1]++;
                 x1++;
                 y1++;
-            } else if (x1 < x2 && y1 > y2) {
+            }    
+        } else if (x1 <= x2 && y1 >= y2) {
+            while (x1 !== x2+1 && y1 !== y2-1) {
                 plot[`line${y1}`][x1]++;
                 x1++;
                 y1--;
-            } else if (x1 > x2 && y1 > y2) {
+            }    
+        } else if (x1 >= x2 && y1 >= y2) {
+            while (x1 !== x2-1 && y1 !== y2-1) {
                 plot[`line${y1}`][x1]++;
                 x1--;
                 y1--;
-            } else {
+            }    
+        } else {
+            while (x1 !== x2-1 && y1 !== y2+1) {
                 plot[`line${y1}`][x1]++;
                 x1--;
                 y1++;
-            }
-        }    
-    }
+            }    
+        }
+    }    
 }
 linePlotDiagonal();
 
